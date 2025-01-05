@@ -38,11 +38,24 @@ terraform {
 }
 ```
 
+4️⃣ Create the S3 Bucket and DynamoDB Table:
+
+Before configuring the backend in Terraform, create the S3 bucket and DynamoDB table in your AWS account.
+
+1.Create the S3 Bucket:
+
+Go to the AWS S3 console and create a bucket with a unique name (e.g., your-unique-s3-bucket-name). Make sure to set the region to match your EKS cluster.
+
+2.Create the DynamoDB Table:
+
+Go to the DynamoDB console and create a table. Name it (e.g., your-dynamodb-table-name) and set the primary key (e.g., LockID of type String).
+
+
 Let's set up the variable for our Infrastructure and create one file with the name of terraform.tfvars inside kube_terraform/ToDo-App/backend.tf and add the below conntent into that file.
 
 ```
 REGION          = "us-east-1"
-PROJECT_NAME    = "ToDo-App"
+PROJECT_NAME    = "Circleci-EKS-Deploy"
 VPC_CIDR        = "10.0.0.0/16"
 PUB_SUB1_CIDR   = "10.0.1.0/24"
 PUB_SUB2_CIDR   = "10.0.2.0/24"
