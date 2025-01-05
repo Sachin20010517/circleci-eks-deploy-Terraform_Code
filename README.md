@@ -17,11 +17,28 @@ Follow the below steps to Install the Terraform and another dependency.
 2️⃣ Let's install dependency to deploy the application
 
 ``` 
-cd kube_terraform/ToDo-App/
-terraform init
+  cd kube_terraform/ToDo-App/
+  terraform init
 ```
 
-3️⃣ Edit the below file according to your configuration
+3️⃣ **Create the S3 Bucket and DynamoDB Table**:
+
+Before configuring the backend in Terraform, ensure you create the S3 bucket and DynamoDB table in your AWS account.
+
+### I) Create the S3 Bucket:
+
+- Go to the AWS S3 console and create a bucket with a unique name (e.g., `your-unique-s3-bucket-name`).  
+- Ensure the bucket's region matches your EKS cluster's region.
+
+### II) Create the DynamoDB Table:
+
+- Go to the DynamoDB console and create a table.  
+  - **Table Name**: Choose a name (e.g., `your-dynamodb-table-name`).  
+  - **Partition Key**: Set the **partition key** as `LockID` of type `String`.  
+    This key is required for Terraform to use DynamoDB for state locking.
+
+    
+4️⃣ Edit the below file according to your configuration
 
 `vim kube_terraform/ToDo-App/backend.tf`
 
@@ -37,19 +54,6 @@ terraform {
   }
 }
 ```
-
-4️⃣ Create the S3 Bucket and DynamoDB Table:
-
-Before configuring the backend in Terraform, create the S3 bucket and DynamoDB table in your AWS account.
-
-1.Create the S3 Bucket:
-
-Go to the AWS S3 console and create a bucket with a unique name (e.g., your-unique-s3-bucket-name). Make sure to set the region to match your EKS cluster.
-
-2.Create the DynamoDB Table:
-
-Go to the DynamoDB console and create a table. Name it (e.g., your-dynamodb-table-name) and set the primary key (e.g., LockID of type String).
-
 
 Let's set up the variable for our Infrastructure and create one file with the name of terraform.tfvars inside kube_terraform/ToDo-App/backend.tf and add the below conntent into that file.
 
@@ -78,28 +82,25 @@ type yes, and it will prompt you for permission or use --auto-approve in the com
 5️⃣Configure AWS:
 
 ```
-aws configure
+  aws configure
 ```
 
 6️⃣Set up an alias for Terraform:
 
 To avoid typing terraform repeatedly, set up an alias for it. Run the following command:
 ```
-alias tf=terraform
+  alias tf=terraform
 ```
 It's time to build the infrastructure
 ```
-cd ToDo-App
+  cd ToDo-App
 ```
 ```
-tf init
+  tf init
+  tf plan
+  tf apply --auto-approve
 ```
-```
-tf plan
-```
-```
-tf apply --auto-approve
-```
+
 
 **This project contains Three GitHub repositories**
 
