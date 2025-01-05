@@ -65,9 +65,7 @@ PRI_SUB4_CIDR   = "10.0.4.0/24"
 
 Please note that the above file is crucial for setting up the infrastructure, so pay close attention to the values you enter for each variable.
 
-It's time to build the infrastructure
-
-The below command will tell you what terraform is going to create.
+<!-- The below command will tell you what terraform is going to create.
 
 `terraform plan`
 
@@ -75,8 +73,33 @@ Finally, HIT the below command to create the infrastructure...
 
 `terraform apply`
 
-type yes, and it will prompt you for permission or use --auto-approve in the command above.
+type yes, and it will prompt you for permission or use --auto-approve in the command above. -->
 
+5️⃣Configure AWS:
+
+```
+aws configure
+```
+
+6️⃣Set up an alias for Terraform:
+
+To avoid typing terraform repeatedly, set up an alias for it. Run the following command:
+```
+alias tf=terraform
+```
+It's time to build the infrastructure
+```
+cd ToDo-App
+```
+```
+tf init
+```
+```
+tf plan
+```
+```
+tf apply --auto-approve
+```
 
 **This project contains Three GitHub repositories**
 
