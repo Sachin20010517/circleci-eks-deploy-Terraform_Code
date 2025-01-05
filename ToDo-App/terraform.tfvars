@@ -1,5 +1,5 @@
 REGION          = "us-east-1"
-PROJECT_NAME    = "ToDo-App"
+PROJECT_NAME    = "Circleci-EKS-Deploy"
 VPC_CIDR        = "10.0.0.0/16"
 PUB_SUB1_CIDR   = "10.0.1.0/24"
 PUB_SUB2_CIDR   = "10.0.2.0/24"
