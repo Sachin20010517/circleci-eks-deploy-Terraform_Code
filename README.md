@@ -101,6 +101,16 @@ tf plan
 tf apply --auto-approve
 ```
 
+8️⃣ Log in to your EKS Cluster:
+
+After provisioning your EKS cluster, use the following command to configure your kubectl to connect to it:
+```
+aws eks update-kubeconfig --region us-east-1 --name Circleci-EKS-Deploy
+```
+
+
+
+
 **This project contains Three GitHub repositories**
 
 ➡️ [App Code] (https://github.com/Sachin20010517/circleci-eks-deploy-AppCode)
